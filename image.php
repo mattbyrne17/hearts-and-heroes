@@ -1,79 +1,79 @@
 <?php
 /**
- * The template for displaying image attachments
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @package required
+ * @since   1.0.0
  */
-
-// Retrieve attachment metadata.
-$metadata = wp_get_attachment_metadata();
-
-get_header();
 ?>
+<?php get_header(); ?>
 
-	<section id="primary" class="content-area image-attachment">
-		<div id="content" class="site-content" role="main">
+	<div id="main" class="clearfix">
 
-	<?php
-		// Start the Loop.
-		while ( have_posts() ) : the_post();
-	?>
+		<?php while ( have_posts() ) {
+			the_post(); ?>
+
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<header class="entry-header">
-					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-					<div class="entry-meta">
+					<h1 class="entry-title"><?php the_title(); ?></h1>
 
-						<span class="entry-date"><time class="entry-date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time></span>
+					<nav role="navigation" id="image-navigation" class="navigation-image">
+						<div class="nav-previous"><?php previous_image_link( false, __( '<span class="meta-nav">&larr;</span> Previous', 'required' ) ); ?></div>
+						<div class="nav-next"><?php next_image_link( false, __( 'Next <span class="meta-nav">&rarr;</span>', 'required' ) ); ?></div>
+					</nav><!-- /#image-navigation -->
 
-						<span class="full-size-link"><a href="<?php echo esc_url( wp_get_attachment_url() ); ?>"><?php echo $metadata['width']; ?> &times; <?php echo $metadata['height']; ?></a></span>
-
-						<span class="parent-post-link"><a href="<?php echo esc_url( get_permalink( $post->post_parent ) ); ?>" rel="gallery"><?php echo get_the_title( $post->post_parent ); ?></a></span>
-						<?php edit_post_link( __( 'Edit', 'twentyfourteen' ), '<span class="edit-link">', '</span>' ); ?>
-					</div><!-- .entry-meta -->
-				</header><!-- .entry-header -->
+				</header><!-- /.entry-header -->
 
 				<div class="entry-content">
 					<div class="entry-attachment">
-						<div class="attachment">
-							<?php twentyfourteen_the_attached_image(); ?>
-						</div><!-- .attachment -->
 
-						<?php if ( has_excerpt() ) : ?>
-						<div class="entry-caption">
-							<?php the_excerpt(); ?>
-						</div><!-- .entry-caption -->
-						<?php endif; ?>
-					</div><!-- .entry-attachment -->
+						<div class="attachment">
+							<?php required_the_attached_image(); ?>
+						</div><!-- /.attachment -->
+
+						<?php if ( has_excerpt() ) { ?>
+							<div class="entry-caption">
+								<?php the_excerpt(); ?>
+							</div><!-- /.entry-caption -->
+						<?php } // end if ?>
+					</div><!-- /.entry-attachment -->
 
 					<?php
 						the_content();
-						wp_link_pages( array(
-							'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentyfourteen' ) . '</span>',
-							'after'       => '</div>',
-							'link_before' => '<span>',
-							'link_after'  => '</span>',
-						) );
+						wp_link_pages(
+							array(
+								'before' => '<div class="page-links">' . __( 'Pages:', 'required' ),
+								'after'  => '</div>',
+							)
+						);
 					?>
-				</div><!-- .entry-content -->
-			</article><!-- #post-## -->
+				</div><!-- /.entry-content -->
 
-			<nav id="image-navigation" class="navigation image-navigation">
-				<div class="nav-links">
-				<?php previous_image_link( false, '<div class="previous-image">' . __( 'Previous Image', 'twentyfourteen' ) . '</div>' ); ?>
-				<?php next_image_link( false, '<div class="next-image">' . __( 'Next Image', 'twentyfourteen' ) . '</div>' ); ?>
-				</div><!-- .nav-links -->
-			</nav><!-- #image-navigation -->
+				<footer class="entry-meta">
+					<?php
+						if ( comments_open() && pings_open() ) : // Comments and trackbacks open
+							printf( __( '<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'required' ), get_trackback_url() );
+						elseif ( ! comments_open() && pings_open() ) : // Only trackbacks open
+							printf( __( 'Comments are closed, but you can leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'required' ), get_trackback_url() );
+						elseif ( comments_open() && ! pings_open() ) : // Only comments open
+							 _e( 'Trackbacks are closed, but you can <a class="comment-link" href="#respond" title="Post a comment">post a comment</a>.', 'required' );
+						elseif ( ! comments_open() && ! pings_open() ) : // Comments and trackbacks closed
+							_e( 'Both comments and trackbacks are currently closed.', 'required' );
+						endif;
 
-			<?php comments_template(); ?>
+						edit_post_link( __( 'Edit', 'required' ), ' <span class="edit-link">', '</span>' );
+					?>
+				</footer><!-- /.entry-meta -->
+			</article><!-- /#post -->
 
-		<?php endwhile; // end of the loop. ?>
+			<?php
+				// If comments are open or we have at least one comment, load up the comment template
+				if ( comments_open() || '0' != get_comments_number() ) {
+					comments_template();
+				} // end if
+			?>
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
+		<?php } // end while ?>
 
-<?php
-get_sidebar();
-get_footer();
+	</div><!-- /#main -->
+
+<?php get_footer(); ?>

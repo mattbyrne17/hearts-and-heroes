@@ -1,40 +1,54 @@
 <?php
 /**
- * The Template for displaying all single posts
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @package required
+ * @since   1.0.0
  */
+?>
+<?php get_header(); ?>
 
-get_header(); ?>
+	<div id="main" class="clearfix">
 
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
-			<?php
-				// Start the Loop.
-				while ( have_posts() ) : the_post();
+		<?php
+			if ( have_posts() ) {
 
-					/*
-					 * Include the post format-specific template for the content. If you want to
-					 * use this in a child theme, then include a file called called content-___.php
-					 * (where ___ is the post format) and that will be used instead.
-					 */
+				while ( have_posts() ) {
+
+					the_post();
 					get_template_part( 'content', get_post_format() );
 
-					// Previous/next post navigation.
-					twentyfourteen_post_nav();
+				} // end while
 
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) {
-						comments_template();
-					}
-				endwhile;
-			?>
-		</div><!-- #content -->
-	</div><!-- #primary -->
+		?>
 
-<?php
-get_sidebar( 'content' );
-get_sidebar();
-get_footer();
+			<!-- single post navigation / back and forth forever -->
+			<nav id="secondary-nav" class="clearfix" role="pagenavigation">
+
+				<?php if ( '' != get_previous_post() ) { ?>
+					<div class="nav-previous">
+						<?php previous_post_link( __( '<span class="meta-nav">&larr;</span> %link', 'required' ) ); ?>
+					</div><!-- /.nav-previous -->
+				<?php } // end if ?>
+
+				<?php if ( '' != get_next_post() ) { ?>
+					<div class="nav-next">
+						<?php next_post_link( __( '%link <span class="meta-nav">&rarr;</span>', 'required' ) ); ?>
+					</div><!-- /.nav-next -->
+				<?php } // end if ?>
+
+			</nav><!-- /#secondary-nav -->
+
+		<?php
+
+				if ( comments_open() || '0' != get_comments_number() ) {
+					comments_template();
+				} // end if
+
+			} else {
+				get_template_part( '404' );
+			} // end else/if
+		?>
+
+	</div><!-- /#main -->
+
+
+<?php get_footer(); ?>

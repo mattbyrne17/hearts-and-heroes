@@ -1,61 +1,43 @@
 <?php
 /**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme and one
- * of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query,
- * e.g., it puts together the home page when no home.php file exists.
- *
- * @link http://codex.wordpress.org/Template_Hierarchy
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @package required
+ * @since   1.0.0
  */
-
-get_header(); ?>
-
-<div id="main-content" class="main-content">
-
-<?php
-	if ( is_front_page() && twentyfourteen_has_featured_posts() ) {
-		// Include the featured content template.
-		get_template_part( 'featured-content' );
-	}
 ?>
+<?php get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+	<div id="main">
 
 		<?php
-			if ( have_posts() ) :
-				// Start the Loop.
-				while ( have_posts() ) : the_post();
+			if ( have_posts() ) {
 
-					/*
-					 * Include the post format-specific template for the content. If you want to
-					 * use this in a child theme, then include a file called called content-___.php
-					 * (where ___ is the post format) and that will be used instead.
-					 */
+				while ( have_posts() ) {
+
+					the_post();
 					get_template_part( 'content', get_post_format() );
 
-				endwhile;
-				// Previous/next post navigation.
-				twentyfourteen_paging_nav();
-
-			else :
-				// If no content, include the "No posts found" template.
-				get_template_part( 'content', 'none' );
-
-			endif;
+				} // end while
 		?>
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
-	<?php get_sidebar( 'content' ); ?>
-</div><!-- #main-content -->
+		<!-- post navigation / back and forth forever -->
+		<nav id="secondary-nav" class="clearfix" role="pagenavigation">
 
-<?php
-get_sidebar();
-get_footer();
+			<?php if ( get_next_posts_link() ) : ?>
+				<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older', 'required' ) ); ?></div>
+				<?php endif; ?>
+
+			<?php if ( get_previous_posts_link() ) : ?>
+				<div class="nav-next"><?php previous_posts_link( __( 'Newer <span class="meta-nav">&rarr;</span>', 'required' ) ); ?></div>
+			<?php endif; ?>
+
+		</nav><!-- /#secondary-nav -->
+
+		<?php } else { ?>
+
+			<?php get_template_part( '404' ); ?>
+
+		<?php } // end else/if ?>
+
+	</div><!-- /#main -->
+
+<?php get_footer(); ?>

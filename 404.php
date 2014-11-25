@@ -1,32 +1,29 @@
 <?php
 /**
- * The template for displaying 404 pages (Not Found)
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @package required
+ * @since   1.0.0
  */
+?>
+<?php get_header(); ?>
 
-get_header(); ?>
+	<div id="main">
 
+		<article id="post-<?php the_ID(); ?>" class="<?php post_class( ); ?>">
 
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+			<header class="animated fadeInDown">
 
-			<header class="page-header">
-				<h1 class="page-title"><?php _e( 'Not Found', 'twentyfourteen' ); ?></h1>
+				<h1 class="entry-title"><?php _e( '404 - Not Found ', 'required' ) ?></h1>
+				<h2 class="error-description"><?php _e( 'No worries, give it a quick search.', 'required' ) ?></h2>
+
 			</header>
 
-			<div class="page-content">
-				<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'twentyfourteen' ); ?></p>
-
+			<div id="error-search">
 				<?php get_search_form(); ?>
-			</div><!-- .page-content -->
+			</div><!--/ #error-search -->
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
+		</article>
 
-<?php
-get_sidebar( 'content' );
-get_sidebar();
-get_footer();
+	</div><!-- /#main -->
+
+<?php get_footer(); ?>
+

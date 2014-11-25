@@ -1,31 +1,53 @@
 <?php
 /**
- * The template used for displaying page content
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @package required
+ * @since   1.0.0
  */
 ?>
+<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?>>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php
-		// Page thumbnail and title.
-		twentyfourteen_post_thumbnail();
-		the_title( '<header class="entry-header"><h1 class="entry-title">', '</h1></header><!-- .entry-header -->' );
-	?>
+	<header>
+		<h1 class="entry-title"><?php the_title(); ?></h1>
+	</header>
 
-	<div class="entry-content">
+	<figure class="featured-image">
 		<?php
-			the_content();
-			wp_link_pages( array(
-				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentyfourteen' ) . '</span>',
-				'after'       => '</div>',
-				'link_before' => '<span>',
-				'link_after'  => '</span>',
-			) );
-
-			edit_post_link( __( 'Edit', 'twentyfourteen' ), '<span class="edit-link">', '</span>' );
+			if ( has_post_thumbnail() ) {
+				the_post_thumbnail();
+			} // end if
 		?>
-	</div><!-- .entry-content -->
-</article><!-- #post-## -->
+	</figure><!-- /.featured-image -->
+
+	<div class="entry-content clearfix">
+
+		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'required' ) ); ?>
+		<?php
+			wp_link_pages(
+				array(
+					'before' => '<div class="page-links">' . __( 'Pages:', 'required' ),
+					'after'  => '</div>',
+				)
+			);
+		?>
+	</div><!-- /.entry-content -->
+
+	<footer class="post-footer">
+
+		<?php $categories_list = get_the_category_list( __( ', ', 'required' ) ); ?>
+		<span class="category-links">
+			<?php printf( __( '%1$s', 'required' ), $categories_list ); ?>
+		</span><!-- /.category-links -->
+
+		<?php
+			$tags_list = get_the_tag_list( '', __( ', ', 'required' ) );
+			if ( $tags_list ) {
+		?>
+				<span class="tag-links">
+					<?php printf( __( 'Tagged %1$s', 'required' ), $tags_list ); ?>
+				</span>
+		<?php } // end if ?>
+
+	</footer><!-- /.post-footer -->
+
+
+</article><!-- /#post -->

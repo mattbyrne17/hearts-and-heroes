@@ -1,48 +1,33 @@
 <?php
 /**
- * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages and that
- * other 'pages' on your WordPress site will use a different template.
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @package required
+ * @since   1.0.0
  */
-
-get_header(); ?>
-
-<div id="main-content" class="main-content">
-
-<?php
-	if ( is_front_page() && twentyfourteen_has_featured_posts() ) {
-		// Include the featured content template.
-		get_template_part( 'featured-content' );
-	}
 ?>
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+<?php get_header(); ?>
 
-			<?php
-				// Start the Loop.
-				while ( have_posts() ) : the_post();
+	<div id="main">
 
-					// Include the page content template.
-					get_template_part( 'content', 'page' );
+		<?php if ( have_posts() ) { ?>
 
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) {
+		<?php while ( have_posts() ) : the_post(); ?>
+
+				<?php get_template_part( 'content', 'page'); ?>
+
+				<?php
+					if ( comments_open() || '0' != get_comments_number() )
 						comments_template();
-					}
-				endwhile;
-			?>
+				?>
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
-	<?php get_sidebar( 'content' ); ?>
-</div><!-- #main-content -->
+			<?php endwhile; ?>
 
-<?php
-get_sidebar();
-get_footer();
+		<?php } else { ?>
+
+			<?php get_template_part( '404' ); ?>
+
+		<?php } // end else/if ?>
+
+	</div><!-- /#main -->
+
+
+<?php get_footer(); ?>

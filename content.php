@@ -1,66 +1,133 @@
 <?php
 /**
- * The default template for displaying content
- *
- * Used for both single and index/archive/search.
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @package required
+ * @since   1.0.0
  */
 ?>
+<article id="post-<?php the_ID(); ?>"
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php twentyfourteen_post_thumbnail(); ?>
+	<?php post_class('clearfix'); ?>>
 
-	<header class="entry-header">
-		<?php if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && twentyfourteen_categorized_blog() ) : ?>
-		<div class="entry-meta">
-			<span class="cat-links"><?php echo get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'twentyfourteen' ) ); ?></span>
-		</div>
-		<?php
-			endif;
+	<?php if( is_archive() || is_search() ) { ?>
 
-			if ( is_single() ) :
-				the_title( '<h1 class="entry-title">', '</h1>' );
-			else :
-				the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' );
-			endif;
-		?>
+		<figure class="featured-image col1">
 
-		<div class="entry-meta">
+			<?php if ( '' != get_the_post_thumbnail() ) { ?>
+				<a href="<?php the_permalink(); ?>" ><?php the_post_thumbnail(); ?></a>
+			<?php } else { ?>
+				<a href="<?php the_permalink(); ?>" ><img src="<?php echo required_first_image(); ?>" alt="<?php the_title(); ?>" /></a>
+			<?php } // end if/else ?>
+
+		</figure><!-- /.featured-image -->
+
+		<div class="col2">
+
+			<header>
+
+				<?php if ( 0 < strlen( get_the_title() ) ) { ?>
+					<h1 class="entry-title">
+						<a href="<?php the_permalink(); ?>">
+							<?php the_title(); ?>
+						</a>
+					</h1><!-- /.entry-title -->
+				<?php } // end if ?>
+
+				<div class="post-meta">
+					<span class="post-date">
+						<?php if ( 0 < strlen( get_the_title() ) ) { ?>
+							<?php the_time( get_option( 'date_format' ) ); ?>
+						<?php } else { ?>
+							<a href="<?php the_permalink(); ?>">
+								<?php the_time( get_option( 'date_format' ) ); ?>
+							</a>
+						<?php } // end if/else ?>
+					</span><!-- /.post-date -->
+					<?php _e( ' | ', 'required' ); ?>
+					<span class="comment-link">
+						<?php comments_popup_link( 'Comment', '1 comment', '% comments', 'comments-link', ''); ?>
+					</span><!-- /.comment-link -->
+					<?php edit_post_link( '- edit ', '<span>', '</span>'); ?>
+				</div><!-- /.post-meta -->
+
+			</header>
+
+			<div class="entry-content clearfix">
+				<?php the_excerpt(); ?>
+			</div><!--/ .entry-content -->
+
+		</div><!--/ col2 -->
+
+	<?php } else { ?>
+
+		<header>
+
+			<?php if ( 0 < strlen( get_the_title() ) ) { ?>
+				<h1 class="entry-title">
+					<a href="<?php the_permalink(); ?>">
+						<?php the_title(); ?>
+					</a>
+				</h1><!-- /.entry-title -->
+			<?php } // end if ?>
+
+			<div class="post-meta">
+				<span class="post-date">
+					<?php if ( 0 < strlen( get_the_title() ) ) { ?>
+						<?php the_time( get_option( 'date_format' ) ); ?>
+					<?php } else { ?>
+						<a href="<?php the_permalink(); ?>">
+							<?php the_time( get_option( 'date_format' ) ); ?>
+						</a>
+					<?php } // end if/else ?>
+				</span><!-- /.post-date -->
+				<?php _e( ' | ', 'required' ); ?>
+				<span class="comment-link">
+					<?php comments_popup_link( 'Comment', '1 comment', '% comments', 'comments-link', ''); ?>
+				</span><!-- /.comment-link -->
+				<?php edit_post_link( '- edit ', '<span>', '</span>'); ?>
+			</div><!-- /.post-meta -->
+
+		</header>
+
+		<figure class="featured-image">
 			<?php
-				if ( 'post' == get_post_type() )
-					twentyfourteen_posted_on();
-
-				if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) :
+				if ( has_post_thumbnail() ) {
+					the_post_thumbnail();
+				} // end if
 			?>
-			<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyfourteen' ), __( '1 Comment', 'twentyfourteen' ), __( '% Comments', 'twentyfourteen' ) ); ?></span>
+		</figure><!-- /.featured-image -->
+
+		<div class="entry-content clearfix">
+
+			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'required' ) ); ?>
+
 			<?php
-				endif;
-
-				edit_post_link( __( 'Edit', 'twentyfourteen' ), '<span class="edit-link">', '</span>' );
+				wp_link_pages(
+					array(
+						'before' => '<div class="page-links">' . __( 'Pages:', 'required' ),
+						'after'  => '</div>',
+					)
+				);
 			?>
-		</div><!-- .entry-meta -->
-	</header><!-- .entry-header -->
 
-	<?php if ( is_search() ) : ?>
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-	<?php else : ?>
-	<div class="entry-content">
-		<?php
-			the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyfourteen' ) );
-			wp_link_pages( array(
-				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentyfourteen' ) . '</span>',
-				'after'       => '</div>',
-				'link_before' => '<span>',
-				'link_after'  => '</span>',
-			) );
-		?>
-	</div><!-- .entry-content -->
-	<?php endif; ?>
+		</div><!-- /.entry-content -->
 
-	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">', '', '</span></footer>' ); ?>
-</article><!-- #post-## -->
+		<footer class="post-footer">
+
+			<?php $categories_list = get_the_category_list( __( ', ', 'required' ) ); ?>
+			<span class="category-links">
+				<?php printf( __( '%1$s', 'required' ), $categories_list ); ?>
+			</span><!-- /.category-links -->
+
+			<?php $tags_list = get_the_tag_list( '', __( ', ', 'required' ) );
+				if ( $tags_list ) {
+			?>
+					<span class="tag-links">
+						<?php printf( __( 'Tagged %1$s', 'required' ), $tags_list ); ?>
+					</span><!-- /.tag-links -->
+			<?php } // end if ?>
+
+		</footer>
+
+	<?php } //end if ?>
+
+</article>

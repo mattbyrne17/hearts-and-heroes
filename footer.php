@@ -1,28 +1,25 @@
 <?php
 /**
- * The template for displaying the footer
- *
- * Contains footer content and the closing of the #main and #page div elements.
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
+ * @package required
+ * @since   1.0.0
  */
 ?>
+	</div><!-- /#wrapper -->
 
-		</div><!-- #main -->
+	<footer id="site-footer" role="contentinfo">
 
-		<footer id="colophon" class="site-footer" role="contentinfo">
+		<div id="credit">
 
-			<?php get_sidebar( 'footer' ); ?>
+			<?php _e( 'Powered By WordPress', 'required' ); ?>
+			<?php _e( 'and', 'required' ); ?>
+			<?php _e( 'Required', 'required' ); ?>
+			<?php _e( 'by', 'required' ); ?>
+			<a href="http://8BIT.io" rel="designer">
+				<?php _e( '8BIT', 'required' ); ?>
+			</a>
+		</div><!-- /#credit -->
 
-			<div class="site-info">
-				<?php do_action( 'twentyfourteen_credits' ); ?>
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentyfourteen' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentyfourteen' ), 'WordPress' ); ?></a>
-			</div><!-- .site-info -->
-		</footer><!-- #colophon -->
-	</div><!-- #page -->
-
+	</footer><!-- /#site-footer -->
 	<?php wp_footer(); ?>
-</body>
+	</body>
 </html>
