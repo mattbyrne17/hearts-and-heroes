@@ -1,0 +1,33 @@
+/**
+ * Media query using min-width
+ * @param {measure} $device-width - Viewport width, required
+ * @group breakpoints
+ */
+@mixin at-least($device-width) {
+	@media screen and (min-width: $device-width) {
+		@content;
+	}
+}
+
+/**
+ * Media query using max-width
+ * @param {measure} $device-width - Viewport width, required
+ * @group breakpoints
+ */
+@mixin until($device-width) {
+	@media screen and (max-width: $device-width - 1) {
+		@content;
+	}
+}
+
+/**
+ * Media query using min-width and max-width
+ * @param {measure} $device-width - Viewport min-width, required
+ * @param {measure} $device-max-width - Viewport max-width, required
+ * @group breakpoints
+ */
+@mixin between($device-width, $device-max-width) {
+  @media screen and (min-width: $device-width) and (max-width: $device-max-width) {
+    @content;
+  }
+}
