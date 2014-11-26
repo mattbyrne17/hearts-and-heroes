@@ -1,33 +1,31 @@
-/**
- * Media query using min-width
- * @param {measure} $device-width - Viewport width, required
- * @group breakpoints
- */
-@mixin at-least($device-width) {
-	@media screen and (min-width: $device-width) {
-		@content;
-	}
-}
+/*
+ * HEY HEY HEY!  Break it up over there!
+*/
 
-/**
- * Media query using max-width
- * @param {measure} $device-width - Viewport width, required
- * @group breakpoints
- */
-@mixin until($device-width) {
-	@media screen and (max-width: $device-width - 1) {
-		@content;
-	}
-}
+$mobile: 480px;
+$tablet: 800px;
+$laptop: 992px;
+$desktop: 1200px;
 
-/**
- * Media query using min-width and max-width
- * @param {measure} $device-width - Viewport min-width, required
- * @param {measure} $device-max-width - Viewport max-width, required
- * @group breakpoints
- */
-@mixin between($device-width, $device-max-width) {
-  @media screen and (min-width: $device-width) and (max-width: $device-max-width) {
-    @content;
-  }
+@mixin breakpoint($point) {
+    @if $point == desktop {
+        @media (min-width: $desktop) {
+            @content;
+        }
+    }
+    @else if $point == laptop {
+        @media (max-width: $laptop) {
+            @content;
+        }
+    }
+    @else if $point == tablet {
+        @media (max-width: $tablet) {
+            @content;
+        }
+    }
+    @else if $point == mobile {
+        @media (max-width: $mobile) {
+            @content;
+        }
+    }
 }
