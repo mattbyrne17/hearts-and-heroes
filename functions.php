@@ -107,6 +107,8 @@ function required_styles_and_scripts() {
 
 	// Animate.css - http://daneden.me/animate/
 	wp_enqueue_style( 'animate-css', get_template_directory_uri() . '/css/animate.css' );
+	wp_enqueue_style( 'sandbox-base', get_template_directory_uri() . '/css/sandbox.css' );
+	
 	wp_enqueue_style( 'required-style', get_stylesheet_uri() );
 
 	// FitVids and Required Theme JavaScript

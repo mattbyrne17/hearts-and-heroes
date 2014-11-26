@@ -1,31 +1,3 @@
-/*
-Theme Name: sandbox
-Author: mattbyrne17
-Author URI: http://www.matthewbyrne.net
-Description: This is where I play
-Version: 0.1
-
-Use it to make something cool, have fun, and share what you've learned with others.
-
-*/
-
-@import "reset";
-
-
-/* Colors
--------------------------------------------------------------------------------*/
-
-$link:      #60adf6;
-$grey:      #b3c0bf;
-$light-grey:  #f1f1f1;
-$green:         #5ebf60;
-
-
-/* Typography
--------------------------------------------------------------------------------*/
-
-@import url(http://fonts.googleapis.com/css?family=Lato:300,700,300italic,700italic);
-@import url(http://fonts.googleapis.com/css?family=Varela+Round);
 
 body {
   font-family: 'Varela Round', 'Helvetica Neue', Helvetica, sans-serif;
@@ -743,38 +715,7 @@ table {
   }
 
 }
-
-/* mixins
--------------------------------------------------------------------------------*/
-
-
-@include transition($kind: all, $time: .25s) {
-  -webkit-transition: $kind $time ease-in-out;
-  -moz-transition: $kind $time ease-in-out;
-  -o-transition: $kind $time ease-in-out;
-  -ms-transition: $kind $time ease-in-out;
-  transition: $kind $time ease-in-out;
-}
-
-.opacity($opacity: 0.8) {
-  -moz-opacity: $opacity;
-  -khtml-opacity: $opacity;
-  -webkit-opacity: $opacity;
-  opacity: $opacity;
-}
-
-.border-radius($radius: 4px ) {
-    -webkit-border-radius: $radius;
-    -moz-border-radius: $radius;
-    border-radius: $radius;
-    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
-}
-
-.drop-shadow($x-axis: 0, $y-axis: 1px, $blur: 8px, $alpha: 0.2) {
-  -webkit-box-shadow: $x-axis $y-axis $blur rgba(0, 0, 0, $alpha);
-  -moz-box-shadow: $x-axis $y-axis $blur rgba(0, 0, 0, $alpha);
-  box-shadow: $x-axis $y-axis $blur rgba(0, 0, 0, $alpha);
-}
+ 
 
 /* required classes
 -------------------------------------------------------------------------------*/

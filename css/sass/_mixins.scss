@@ -1,0 +1,28 @@
+
+@mixin transition($kind: all, $time: .25s) {
+  -webkit-transition: $kind $time ease-in-out;
+  -moz-transition: $kind $time ease-in-out;
+  -o-transition: $kind $time ease-in-out;
+  -ms-transition: $kind $time ease-in-out;
+  transition: $kind $time ease-in-out;
+}
+
+@mixin opacity($opacity: 0.8) {
+  -moz-opacity: $opacity;
+  -khtml-opacity: $opacity;
+  -webkit-opacity: $opacity;
+  opacity: $opacity;
+}
+
+@mixin border-radius($radius: 4px) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+@mixin drop-shadow($x-axis: 0, $y-axis: 1px, $blur: 8px, $alpha: 0.2) {
+  -webkit-box-shadow: $x-axis $y-axis $blur rgba(0, 0, 0, $alpha);
+  -moz-box-shadow: $x-axis $y-axis $blur rgba(0, 0, 0, $alpha);
+  box-shadow: $x-axis $y-axis $blur rgba(0, 0, 0, $alpha);
+}
