@@ -1,8 +1,9 @@
 body {
-  font-family: 'Varela Round', 'Helvetica Neue', Helvetica, sans-serif;
-  color: #333;
+  font-family: $mainfont;
+  color: $grey;
   line-height: 1.5;
   font-size: 100%;
+  background: $cream;
 }
 
 h1,
@@ -15,7 +16,7 @@ h6 {
   letter-spacing: 1px;
   margin-bottom: 26px;
   line-height: 1.2;
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: $headings;
 }
 
 a {
@@ -103,70 +104,80 @@ p .alignnone {
 }
 
 #sidebar {
-  background-color: $light-grey;
+  background: $grey;
   position: fixed;
   left: 0;
   top: 0;
-  width: 180px;
+  width: 15%;
   height: 100%;
-  padding: 80px 40px 0;
-}
+  padding: 50px 30px;
 
-#main {
-  width: 620px;
-  background: #fff;
-  margin-left: 300px;
-  padding-top: 80px;
-}
-
-#masthead {
 
   .bio-pic {
 
-    img {
-      max-width: 100%;
-      border-radius: 50%;
-      @include transition(margin);
+   text-align: center;
 
-      &:hover {
-        margin-top: -5px;
-        margin-bottom: 5px;
-      }
+    img {
+      max-width: 35%;
+      @include transition(margin);
     }
 
   }
 
+}
+
+#main {
+  width: 620px;
+  margin-left: 360px;
+  padding-top: 40px;
+}
+
+#masthead {
+
   .site-title {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 1.5vw;
+    font-weight: 400;
     text-transform: uppercase;
     margin: 20px 0 10px;
+    letter-spacing: 3px;
+    line-height: 1.2;
+
+      a { color: $cream; }
+
   }
 
   .site-description {
     font-size: 12px;
     line-height: 1.4;
+    color: $cream;
   }
+
+ img { max-width: 100%; }
 
 }//masthead
 
 nav {
-  margin-bottom: 40px;
+
+ font-size: 15px;
 
   ul {
 
+   padding-left: 0;
+
     li {
-      //text-align: center;
+      list-style: none;
 
       a {
         display: block;
-        padding: 5px 0;
+        padding: 2px 0;
+        font-weight: 300;
+        letter-spacing: 1px;
+        text-transform: uppercase;
         @include transition(all);
 
         &:hover {
           color: #fff;
           background: fade($link, 40);
-          padding-left: 12px;
         }
       }
     }
@@ -208,6 +219,7 @@ article {
       word-spacing: 5px;
       margin-bottom: 5px;
       font-weight: 700;
+      font-size: 1.5em;
     }
   }//header
 

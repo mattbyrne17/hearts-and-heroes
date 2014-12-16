@@ -22,19 +22,8 @@
 
 				<header id="masthead">
 
-					<div class="bio-pic">
-						<a href="<?php echo esc_html( home_url( '/' ) ); ?>" >
-							<?php
-								// Get the admin email and the gravatar for said admin
-								$admin_email = get_option('admin_email');
-								echo get_avatar( $admin_email, 80 );
-							?>
-						</a>
-					</div><!--/ bio-pic -->
-
-					<hgroup>
-						<h1 class="site-title"><a href="<?php echo esc_url( home_url() ); ?>" ><?php bloginfo( 'name' ); ?></a></h1>
-						<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+					<hgroup class="header_logo">
+						<h1 class="site-title"><a href="#">Matthew Byrne</a></h1>
 					</hgroup>
 
 				</header><!-- /#masthead -->
@@ -42,5 +31,9 @@
 				<nav id="navigation">
 						<?php wp_nav_menu( array( 'theme_location' => 'primary', 'depth' => 1, ) ); ?>
 				</nav><!-- /#navigation -->
+
+		  	 <div class="bio-pic">
+			 	<img src="<?php bloginfo('template_directory'); ?>/images/waves.png">
+			 </div>
 
 			</aside><!-- /#sidebar -->

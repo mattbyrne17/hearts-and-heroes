@@ -8,8 +8,7 @@ partial files.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-@import url(http://fonts.googleapis.com/css?family=Lato:300,700,300italic,700italic);
-@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -363,14 +362,16 @@ th {
   padding: 0; }
 
 /* Colors */
+/* Typography */
 /*
  * HEY HEY HEY!  Break it up over there!
 */
 body {
-  font-family: 'Varela Round', 'Helvetica Neue', Helvetica, sans-serif;
-  color: #333;
+  font-family: "Roboto Condensed", sans-serif;
+  color: #272727;
   line-height: 1.5;
-  font-size: 100%; }
+  font-size: 100%;
+  background: #dee1d5; }
 
 h1,
 h2,
@@ -382,10 +383,10 @@ h6 {
   letter-spacing: 1px;
   margin-bottom: 26px;
   line-height: 1.2;
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif; }
+  font-family: "Roboto Condensed", sans-serif; }
 
 a {
-  color: #60adf6;
+  color: #8696ab;
   text-decoration: none;
   -webkit-transition: color 0.25s ease-in-out;
   -moz-transition: color 0.25s ease-in-out;
@@ -393,7 +394,7 @@ a {
   -ms-transition: color 0.25s ease-in-out;
   transition: color 0.25s ease-in-out; }
   a:hover {
-    color: fade(#60adf6, 40%); }
+    color: fade(#8696ab, 40%); }
 
 p {
   margin: 0 0 30px; }
@@ -456,54 +457,64 @@ p .alignnone {
   width: 100%; }
 
 #sidebar {
-  background-color: #f1f1f1;
+  background: #272727;
   position: fixed;
   left: 0;
   top: 0;
-  width: 180px;
+  width: 15%;
   height: 100%;
-  padding: 80px 40px 0; }
+  padding: 50px 30px; }
+  #sidebar .bio-pic {
+    text-align: center; }
+    #sidebar .bio-pic img {
+      max-width: 35%;
+      -webkit-transition: margin 0.25s ease-in-out;
+      -moz-transition: margin 0.25s ease-in-out;
+      -o-transition: margin 0.25s ease-in-out;
+      -ms-transition: margin 0.25s ease-in-out;
+      transition: margin 0.25s ease-in-out; }
 
 #main {
   width: 620px;
-  background: #fff;
-  margin-left: 300px;
-  padding-top: 80px; }
+  margin-left: 360px;
+  padding-top: 40px; }
 
-#masthead .bio-pic img {
-  max-width: 100%;
-  border-radius: 50%;
-  -webkit-transition: margin 0.25s ease-in-out;
-  -moz-transition: margin 0.25s ease-in-out;
-  -o-transition: margin 0.25s ease-in-out;
-  -ms-transition: margin 0.25s ease-in-out;
-  transition: margin 0.25s ease-in-out; }
-  #masthead .bio-pic img:hover {
-    margin-top: -5px;
-    margin-bottom: 5px; }
 #masthead .site-title {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 1.5vw;
+  font-weight: 400;
   text-transform: uppercase;
-  margin: 20px 0 10px; }
+  margin: 20px 0 10px;
+  letter-spacing: 3px;
+  line-height: 1.2; }
+  #masthead .site-title a {
+    color: #dee1d5; }
 #masthead .site-description {
   font-size: 12px;
-  line-height: 1.4; }
+  line-height: 1.4;
+  color: #dee1d5; }
+#masthead img {
+  max-width: 100%; }
 
 nav {
-  margin-bottom: 40px; }
-  nav ul li a {
-    display: block;
-    padding: 5px 0;
-    -webkit-transition: all 0.25s ease-in-out;
-    -moz-transition: all 0.25s ease-in-out;
-    -o-transition: all 0.25s ease-in-out;
-    -ms-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out; }
-    nav ul li a:hover {
-      color: #fff;
-      background: fade(#60adf6, 40);
-      padding-left: 12px; }
+  font-size: 15px; }
+  nav ul {
+    padding-left: 0; }
+    nav ul li {
+      list-style: none; }
+      nav ul li a {
+        display: block;
+        padding: 2px 0;
+        font-weight: 300;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        -webkit-transition: all 0.25s ease-in-out;
+        -moz-transition: all 0.25s ease-in-out;
+        -o-transition: all 0.25s ease-in-out;
+        -ms-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out; }
+        nav ul li a:hover {
+          color: #fff;
+          background: fade(#8696ab, 40); }
 
 /* Page/post/article/content styles
 -------------------------------------------------------------------------------*/
@@ -519,7 +530,7 @@ article {
   article .post-meta {
     font-size: 12px;
     text-transform: uppercase;
-    color: #b3c0bf;
+    color: #272727;
     padding: 0 0 10px; }
   article header {
     margin-bottom: 40px; }
@@ -528,7 +539,8 @@ article {
       text-transform: uppercase;
       word-spacing: 5px;
       margin-bottom: 5px;
-      font-weight: 700; }
+      font-weight: 700;
+      font-size: 1.5em; }
   article .featured-image {
     margin-bottom: 40px; }
     article .featured-image img {
@@ -550,7 +562,7 @@ article {
     article .post-footer a {
       color: #d7d7d7; }
       article .post-footer a:hover {
-        color: #60adf6; }
+        color: #8696ab; }
 
 /* Stying of the elements */
 .entry-content, #comments .comment-body {
@@ -583,14 +595,14 @@ article {
   .entry-content cite, #comments .comment-body cite {
     font-family: 'Varela Round', 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 12px;
-    color: #b3c0bf; }
+    color: #272727; }
   .entry-content address, #comments .comment-body address {
     font-size: 14px;
     margin-bottom: 30px; }
   .entry-content acronym,
   .entry-content abbr, #comments .comment-body acronym,
   #comments .comment-body abbr {
-    border-bottom: 1px dotted #60adf6;
+    border-bottom: 1px dotted #8696ab;
     cursor: help; }
   .entry-content code, .entry-content pre, #comments .comment-body code, #comments .comment-body pre {
     color: #666;
@@ -615,13 +627,13 @@ article {
   #respond form > p {
     margin-bottom: 10px; }
   #respond textarea {
-    border-color: #b3c0bf;
+    border-color: #272727;
     width: 100%;
     box-sizing: border-box;
     min-height: 150px;
     padding: 10px; }
   #respond input[type="text"] {
-    border: 1px solid #b3c0bf;
+    border: 1px solid #272727;
     padding: 10px;
     width: 100%;
     box-sizing: border-box; }
@@ -750,7 +762,7 @@ table {
 #big-search input[type="search"] {
   width: 80%;
   float: left;
-  border: 1px solid #b3c0bf;
+  border: 1px solid #272727;
   padding: 12px 10px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -761,7 +773,7 @@ table {
 #big-search input[type="submit"] {
   width: 20%;
   float: right;
-  background: #60adf6;
+  background: #8696ab;
   color: #fff;
   border: none;
   padding: 13px 15px;
@@ -771,7 +783,7 @@ table {
   -ms-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out; }
   #big-search input[type="submit"]:hover {
-    background: fade(#60adf6, 50%); }
+    background: fade(#8696ab, 50%); }
 
 #widget-area {
   margin: 40px 0; }
@@ -810,9 +822,9 @@ table {
   width: 100%;
   margin-bottom: 40px; }
   #infinite-handle span {
-    color: #60adf6;
+    color: #8696ab;
     background: transparent;
-    border: 1px solid #b3c0bf;
+    border: 1px solid #272727;
     text-align: center;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
